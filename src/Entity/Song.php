@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Artist;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: SongRepository::class)]
 #[ApiResource]
@@ -21,9 +22,11 @@ class Song
     private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(['song:read'])]
     private ?string $title = null;
 
     #[ORM\Column(type: 'integer')]
+    #[Groups(['song:read'])]
     private ?int $length = null;
 
     #[ORM\ManyToOne(targetEntity: Album::class, inversedBy: 'songs')]
