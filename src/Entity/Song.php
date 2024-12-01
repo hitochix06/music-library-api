@@ -7,9 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Album;
 use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Artist;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
 
 #[ORM\Entity(repositoryClass: SongRepository::class)]
 #[ApiResource]
+#[ApiFilter(RangeFilter::class, properties: ['length'])]
 class Song
 {
     #[ORM\Id]
